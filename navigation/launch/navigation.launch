@@ -1,0 +1,37 @@
+<launch>
+    <!-- rviz -->
+    <arg name="open_rviz" value="true" />
+
+    <!-- Arguments -->
+    <arg name="map_file" default="$(find navigation)/maps/map.yaml" />
+
+    <!-- robot_description -->
+    <include file="$(find ep_description)/launch/ep_description.launch" />
+
+    <!-- bringup -->
+    <include file="$(find ep_bringup)/launch/bringup.launch" />
+
+    <!-- Map server -->
+    <node pkg="map_server" name="map_server" type="map_server" args="$(arg map_file)" />
+
+    <!-- Odometry -->
+    <include file="$(find navigation)/launch/localization_fusion.launch" />
+
+    <!-- Localization -->
+    <node pkg="iris_lama_ros" type="loc2d_ros" name="loc2d_ros" output="screen">
+        <remap from="/scan" to="/rplidar/scan" />
+    </node>
+
+    <!-- Move_Base -->
+    <include file="$(find navigation)/launch/move_base.launch" />
+
+    <!-- tracker -->
+    <node pkg="navigation" type="tracker.py" name="tracker_node" output="screen"> </node>
+
+    <!-- rqt_reconfigure -->
+    <node pkg="rqt_reconfigure" type="rqt_reconfigure" name="reconfigure_node" output="screen"> </node>
+
+    <!-- rviz -->
+    <node if="$(arg open_rviz)" pkg="rviz" type="rviz" name="rviz" required="true" args="-d $(find navigation)/rviz/navigation.rviz" />
+
+</launch>
