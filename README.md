@@ -29,7 +29,7 @@ git clone --recursive https://gitee.com/tb5zhh/is2022-fall-hw4.git
 git clone --recursive https://github.com/AIR-DISCOVER/IS2022Fall-hw4.git
 ```
 
-或[点击这里](TODO)下载压缩包。
+或[点击这里](https://cloud.tsinghua.edu.cn/f/b06174c685a048838565/)下载压缩包。
 
 ### 修改参数
 
@@ -84,7 +84,7 @@ $$
 \exp(-k * (D - r))
 $$
   其中$k$为比例因子，这个值与越大代价越小。$D$ 和 $r$ 分别是小车到目标点距离和小车外接圆半径。
- 
+
 实际运行过程中，也可以通过参数调整面板实时地调整参数，但是最终提交作业时需要将选定的参数在 `navigation/param/global_costmap_params.yaml` 中修改后编译提交。
 
 ---
