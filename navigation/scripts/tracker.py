@@ -20,7 +20,7 @@ class router:
         rospy.set_param("/navigation/dis_disx_k", 1.0)
         rospy.set_param("/navigation/dis_disy_k", 1.0)
         rospy.set_param("/navigation/dis_angle_k", 0.5)
-        rospy.set_param("/navigation/pre_point", 15)
+        rospy.set_param("/navigation/pre_point", 2)
         rospy.set_param("/navigation/window_size", 20)
         self.update_param()
 
