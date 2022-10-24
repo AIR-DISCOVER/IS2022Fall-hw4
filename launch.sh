@@ -9,13 +9,15 @@ docker run -dit --rm --name ros-master --network net-sim \
     ros:noetic-ros-core-focal roscore
 
 # Server
-docker pull docker.discover-lab.com:55555/rmus-2022-fall/sim-headless:hw4
+docker pull docker.discover-lab.com:55555/rmus-2022-fall/sim-headless:v4.1.0-hw4
 docker run -dit --rm --name sim-server --network net-sim \
-    --gpus all \
-    -e ROS_MASTER_URI=http://ros-master:11311 \
+    -e ROS_MASTER_URI="http://ros-master:11311" \
+    -e DISPLAY=$DISPLAY \
+    -e QT_X11_NO_MITSHM=1 \
     -e LIBGL_ALWAYS_SOFTWARE=1 \
-    -v /tmp/.X11-unix:/tmp/.X11-unix \
-    docker.discover-lab.com:55555/rmus-2022-fall/sim-headless:hw4
+    -v /tmp/.X11-unix:/tmp/.X11-unix 
+    --gpus all -e NVIDIA_DRIVER_CAPABILITIES=all \
+    docker.discover-lab.com:55555/rmus-2022-fall/sim-headless:v4.1.0-hw4
 
 # Visualization
 docker run -dit --rm --name ros-gui --network net-sim \
