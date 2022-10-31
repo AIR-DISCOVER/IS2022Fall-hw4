@@ -15,7 +15,7 @@ docker run -dit --rm --name sim-server --network net-sim \
     -e DISPLAY=$DISPLAY \
     -e QT_X11_NO_MITSHM=1 \
     -e LIBGL_ALWAYS_SOFTWARE=1 \
-    -v /tmp/.X11-unix:/tmp/.X11-unix 
+    -v /tmp/.X11-unix:/tmp/.X11-unix \
     --gpus all -e NVIDIA_DRIVER_CAPABILITIES=all \
     docker.discover-lab.com:55555/rmus-2022-fall/sim-headless:v4.1.0-hw4
 
